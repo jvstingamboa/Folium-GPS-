@@ -1,6 +1,7 @@
 import geocoder
 import random
 import folium
+from sklearn.ensemble import IsolationForest  
 
 
 
@@ -39,3 +40,11 @@ print("Map has been saved as gps_path.html")
 
 
 
+X = gps_points
+model = IsolationForest(contamination=0.1)
+labels = model.fit_predict(X)
+
+print("Outlier GPS points:")
+for idx, label in enumerate(labels):
+    if label == -1:
+        print(gps_points[idx])
