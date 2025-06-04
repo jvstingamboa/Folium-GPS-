@@ -40,6 +40,7 @@ print("Map has been saved as gps_path.html")
 
 
 
+#Use Iso Forest to detect outlier GPS points
 X = gps_points
 model = IsolationForest(contamination=0.1)
 labels = model.fit_predict(X)
@@ -48,3 +49,12 @@ print("Outlier GPS points:")
 for idx, label in enumerate(labels):
     if label == -1:
         print(gps_points[idx])
+
+
+## automation 
+
+def test_gps_point_count():
+    assert len(gps_points) == 11, "Should have 11 GPS points (including outlier 10 random + 1 outlier)"
+
+test_gps_point_count()
+print("Test passed: Correct number of GPS points collected.")
