@@ -25,16 +25,13 @@ gps_points.append((base_lat + 0.05, base_lng + 0.05))
 
 #####
 
+#map data visualization
 
 
 myMap =folium.Map(location=gps_points[0], zoom_start=15)
-
 for point in gps_points:
     folium.Marker(point).add_to(myMap)
-
-
 folium.PolyLine(gps_points, color= "blue").add_to(myMap)
-
 myMap.save("gps_path.html")
 print("Map has been saved as gps_path.html")
 
@@ -51,7 +48,7 @@ for idx, label in enumerate(labels):
         print(gps_points[idx])
 
 
-## automation 
+## automation assertions
 
 def test_gps_point_count():
     assert len(gps_points) == 11, "Should have 11 GPS points (including outlier 10 random + 1 outlier)"
